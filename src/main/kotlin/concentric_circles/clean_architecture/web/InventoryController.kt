@@ -14,11 +14,11 @@ class InventoryController (val inventoryService: InventoryService) {
 
     @GetMapping("/inventory")
     fun getInventory(): String {
-        return "This is the output from the inventory controller."
+        return inventoryService.listAllProductsInInventory().toString()
     }
 
     @Operation(summary = "Add a product to the inventory.")
-    @PostMapping("/addproducttoinventory")
+    @PostMapping("/addtoinventory")
     fun addProductToInventory(@RequestBody product : Product, amount: Int = 1): ResponseEntity<out Any> {
         val newProduct = inventoryService.addProductToInventory(product, amount)
         return ResponseEntity.ok(newProduct)

@@ -45,7 +45,7 @@ class InventoryService {
         }
     }
 
-    fun checkIfProductIsInInventory(productID: UUID): Boolean {
+    fun checkIfProductIsInInventory(productID: UUID): Inventory? {
         return inventoryRepository.searchByProductId(productID)
     }
 
@@ -59,6 +59,10 @@ class InventoryService {
             // TODO: maybe throw a more descriptive exception?
             throw Exception("Product not found in inventory")
         }
+    }
+
+    fun listAllProductsInInventory(): List<Inventory> {
+        return inventoryRepository.findAll().toList()
     }
 
 }
