@@ -1,13 +1,21 @@
 package concentric_circles.clean_architecture.model.entity
 
-import jakarta.persistence.Entity
-import jakarta.persistence.Id
+import jakarta.persistence.*
+import lombok.Data
 import java.util.*
 
 @Entity
+@Data
+@Table(name = "`inventory`")
 class Inventory(
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column
     val inventoryId: UUID,
+
+    @Column
     val productId: UUID? = null,
+
+    @Column
     var productQuantity: Int
 )

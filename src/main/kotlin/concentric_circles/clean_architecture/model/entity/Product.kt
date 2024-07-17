@@ -1,14 +1,22 @@
 package concentric_circles.clean_architecture.model.entity
 
-import jakarta.persistence.Entity
-import jakarta.persistence.Id
+import jakarta.persistence.*
+import lombok.Data
 import java.util.*
 
 @Entity
+@Data
+@Table(name = "`product`")
 class Product (
     @Id
-    val productId: UUID,
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column
+    val productId: UUID = UUID.randomUUID(),
+
+    @Column
     var name: String,
+
+    @Column
     var price: Double,
 //    val description: String
 ) {
