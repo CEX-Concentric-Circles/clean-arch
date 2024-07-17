@@ -239,6 +239,7 @@
 					<compilerPlugins>
 						<plugin>spring</plugin>
 						<plugin>jpa</plugin>
+						<plugin>lombok</plugin>
 					</compilerPlugins>
 				</configuration>
 				<dependencies>
@@ -251,6 +252,17 @@
 						<groupId>org.jetbrains.kotlin</groupId>
 						<artifactId>kotlin-maven-noarg</artifactId>
 						<version>${kotlin.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.jetbrains.kotlin</groupId>
+						<artifactId>kotlin-maven-lombok</artifactId>
+						<version>${kotlin.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.projectlombok</groupId>
+						<artifactId>lombok</artifactId>
+<!--						<version>1.18.20</version>-->
+<!--						<scope>provided</scope>-->
 					</dependency>
 				</dependencies>
 			</plugin>
