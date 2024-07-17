@@ -11,7 +11,7 @@ class Order(
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column
-    var orderId: UUID,
+    var orderId: UUID = UUID.randomUUID(),
 
     @OneToMany
     @Column

@@ -11,7 +11,7 @@ class Inventory(
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column
-    val inventoryId: UUID,
+    val inventoryId: UUID = UUID.randomUUID(),
 
     @Column
     val productId: UUID? = null,
