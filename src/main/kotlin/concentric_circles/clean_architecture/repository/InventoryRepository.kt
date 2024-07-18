@@ -9,5 +9,6 @@ import java.util.*
 interface InventoryRepository: CrudRepository<Inventory, UUID> {
     fun findInventoryByProductId(productId: UUID): Inventory?
     fun searchByProductId(productId: UUID): Inventory?
+    fun deleteInventoryByProductId(productId: UUID): Boolean
     // what else to add here? :think:
 }
