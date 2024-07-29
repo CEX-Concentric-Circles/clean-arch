@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-class CreateProductUseCase {
-
-    lateinit var productRepository: ProductRepository
+class CreateProductUseCase (
+    var productRepository: ProductRepository
+) {
 
     fun createProduct(product: Product): Product {
         val existingProduct = productRepository.findProductByName(product.name)
@@ -21,4 +21,5 @@ class CreateProductUseCase {
 
         return createdProduct
     }
+
 }

@@ -8,11 +8,10 @@ import org.springframework.stereotype.Service
 import java.util.UUID
 
 @Service
-class AddProductToInventoryUseCase {
-
-    lateinit var inventoryRepository: InventoryRepository
-
-    lateinit var productRepository: ProductRepository
+class AddProductToInventoryUseCase (
+    var productRepository: ProductRepository,
+    var inventoryRepository: InventoryRepository
+) {
 
     fun addProductToInventory(product: Product, amount: Int = 1): Inventory?{
 

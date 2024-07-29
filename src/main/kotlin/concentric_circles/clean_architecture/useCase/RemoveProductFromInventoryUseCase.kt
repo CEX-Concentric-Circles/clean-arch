@@ -4,11 +4,10 @@ import concentric_circles.clean_architecture.repository.InventoryRepository
 import org.springframework.stereotype.Service
 
 @Service
-class RemoveProductFromInventoryUseCase {
-
-    lateinit var inventoryRepository: InventoryRepository
-
-    lateinit var productExistsUseCase: CheckIfProductExistsUseCase
+class RemoveProductFromInventoryUseCase (
+    var inventoryRepository: InventoryRepository,
+    var productExistsUseCase: CheckIfProductExistsUseCase
+) {
 
     fun removeProductFromInventory (productName: String) : Boolean {
 
@@ -17,4 +16,5 @@ class RemoveProductFromInventoryUseCase {
 
         return inventoryRepository.deleteInventoryByProductId(existingProduct.productId)
     }
+
 }

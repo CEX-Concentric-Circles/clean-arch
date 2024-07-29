@@ -5,14 +5,15 @@ import concentric_circles.clean_architecture.repository.ProductRepository
 import org.springframework.stereotype.Service
 
 @Service
-class ListAllProductsUseCase {
-
-    lateinit var productRepository: ProductRepository
+class ListAllProductsUseCase (
+    val productRepository: ProductRepository
+) {
 
     fun listAllProducts(): List<Product> {
 
-        val allProducts = productRepository.listAllProducts()
+        val allProducts = productRepository.findAll().toList()
 
         return allProducts
     }
+
 }

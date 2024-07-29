@@ -4,11 +4,10 @@ import concentric_circles.clean_architecture.repository.ProductRepository
 import org.springframework.stereotype.Service
 
 @Service
-class DeleteProductUseCase {
-
-    lateinit var productRepository: ProductRepository
-
-    lateinit var productExistsUseCase: CheckIfProductExistsUseCase
+class DeleteProductUseCase (
+    val productRepository: ProductRepository,
+    val productExistsUseCase: CheckIfProductExistsUseCase
+) {
 
     fun deleteProduct (productName: String): Boolean {
 
@@ -17,4 +16,5 @@ class DeleteProductUseCase {
 
         return productRepository.deleteProductByProductId(existingProduct.productId)
     }
+
 }

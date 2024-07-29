@@ -5,9 +5,9 @@ import concentric_circles.clean_architecture.model.entity.Product
 import org.springframework.stereotype.Service
 
 @Service
-class DecreaseProductStockFromInventoryUseCase {
-
-    lateinit var productInStock: CheckIfProductIsInStockUseCase
+class DecreaseProductStockFromInventoryUseCase (
+    var productInStock: CheckIfProductIsInStockUseCase
+) {
 
     fun decreaseStock (product: Product): Inventory? {
 
@@ -18,4 +18,5 @@ class DecreaseProductStockFromInventoryUseCase {
 
         return existingProduct
     }
+
 }

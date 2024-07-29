@@ -6,12 +6,12 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class GetProductUseCase {
+class GetProductUseCase (
+    val productRepository: ProductRepository
+) {
 
-    lateinit var productRepository: ProductRepository
-
-    fun getProductById(productId: UUID): Optional<Product> {
-        return productRepository.findById(productId)
+    fun getProductById(productId: UUID): Product? {
+        return productRepository.findProductByProductId(productId)
     }
 
 }

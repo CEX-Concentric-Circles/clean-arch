@@ -5,11 +5,10 @@ import concentric_circles.clean_architecture.repository.InventoryRepository
 import org.springframework.stereotype.Service
 
 @Service
-class CheckIfProductIsInStockUseCase {
-
-    lateinit var inventoryRepository: InventoryRepository
-
-    lateinit var productExistsUseCase: CheckIfProductExistsUseCase
+class CheckIfProductIsInStockUseCase (
+    var inventoryRepository: InventoryRepository,
+    var productExistsUseCase: CheckIfProductExistsUseCase
+) {
 
     fun checkIfProductIsInStock(productName: String): Inventory? {
 
@@ -20,4 +19,5 @@ class CheckIfProductIsInStockUseCase {
 
         return productInInventory
     }
+
 }

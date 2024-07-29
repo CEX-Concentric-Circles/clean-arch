@@ -6,9 +6,9 @@ import org.springframework.stereotype.Service
 import java.util.*
 
 @Service
-class UpdateProductUseCase {
-
-    lateinit var productRepository: ProductRepository
+class UpdateProductUseCase (
+    val productRepository: ProductRepository
+){
 
     fun updateProduct(product: Product): Product? {
 
@@ -22,4 +22,5 @@ class UpdateProductUseCase {
 
         return productRepository.save(searchedProduct)
     }
+
 }

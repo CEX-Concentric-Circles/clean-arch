@@ -5,9 +5,9 @@ import concentric_circles.clean_architecture.repository.ProductRepository
 import org.springframework.stereotype.Service
 
 @Service
-class CheckIfProductExistsUseCase {
-
-    lateinit var productRepository: ProductRepository
+class CheckIfProductExistsUseCase (
+    var productRepository: ProductRepository
+) {
 
     fun checkIfProductExists(productName: String): Product? {
 
@@ -15,4 +15,5 @@ class CheckIfProductExistsUseCase {
 
         return searchedProduct
     }
+
 }
