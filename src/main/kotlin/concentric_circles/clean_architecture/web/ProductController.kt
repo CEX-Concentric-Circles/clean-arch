@@ -31,7 +31,7 @@ class ProductController (
     @PostMapping("/addproduct")
     fun addProduct(@RequestBody product: Product): ResponseEntity<out Any> {
         val createdProduct = createProductUseCase.createProduct(product)
-        return ResponseEntity.ok().body(addProductToInventoryUseCase.addProductToInventory(createdProduct))
+        return ResponseEntity.ok().body(addProductToInventoryUseCase.addProductToInventory(createdProduct.productId))
     }
 
     @PostMapping("/getproduct")

@@ -13,10 +13,10 @@ class AddProductToInventoryUseCase (
     var inventoryRepository: InventoryRepository
 ) {
 
-    fun addProductToInventory(product: Product, amount: Int = 1): Inventory?{
+    fun addProductToInventory(productId: UUID, amount: Int = 1): Inventory?{
 
-        val searchedProduct = productRepository.findProductByName(product.name)
-            ?: throw Exception("Product '${product.name}' does not exist. Please create the product first.")
+        val searchedProduct = productRepository.findProductByProductId(productId)
+            ?: throw Exception("Product with the ID:'${productId}' does not exist. Please create the product first.")
 
         val inventoryItem = inventoryRepository.findInventoryByProductId(searchedProduct.productId)
 

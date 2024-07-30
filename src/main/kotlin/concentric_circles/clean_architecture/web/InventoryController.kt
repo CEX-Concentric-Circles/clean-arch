@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
+import java.util.UUID
 
 @RestController
 class InventoryController (
@@ -26,8 +27,8 @@ class InventoryController (
 
     @Operation(summary = "Add a product to the inventory.")
     @PostMapping("/addtoinventory")
-    fun addProductToInventory(@RequestBody product : Product, amount: Int = 1): ResponseEntity<out Any> {
-        val newProduct = addProductToInventoryUseCase.addProductToInventory(product, amount)
+    fun addProductToInventory(@RequestBody productId: UUID, amount: Int = 1): ResponseEntity<out Any> {
+        val newProduct = addProductToInventoryUseCase.addProductToInventory(productId, amount)
         return ResponseEntity.ok(newProduct)
     }
 
