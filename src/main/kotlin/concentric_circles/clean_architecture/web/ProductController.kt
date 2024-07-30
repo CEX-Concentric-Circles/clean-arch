@@ -34,9 +34,24 @@ class ProductController (
         return ResponseEntity.ok().body(addProductToInventoryUseCase.addProductToInventory(createdProduct))
     }
 
-    @GetMapping("/getproduct")
+    @PostMapping("/getproduct")
     fun getProductById(@RequestBody productId: UUID): ResponseEntity<out Any>{
         return ResponseEntity.ok().body(getProductUseCase.getProductById(productId))
     }
+
+    @PostMapping("/updateproduct")
+    fun updateProduct(@RequestBody product: Product): ResponseEntity<out Any> {
+        return ResponseEntity.ok().body(updateProductUseCase.updateProduct(product))
+    }
+
+    @PostMapping("/deleteproduct")
+    fun deleteProduct(@RequestBody product: Product): ResponseEntity<out Any> {
+        return ResponseEntity.ok().body(deleteProductUseCase.deleteProduct(product))
+    }
+
+//    @PostMapping("/productexists")
+//    fun checkIfProductExists(@RequestBody productName: String): ResponseEntity<out Any> {
+//        return ResponseEntity.ok().body(checkIfProductExistsUseCase.checkIfProductExists(productName))
+//    }
 
 }
