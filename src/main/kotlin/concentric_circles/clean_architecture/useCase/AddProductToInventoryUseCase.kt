@@ -23,7 +23,7 @@ class AddProductToInventoryUseCase (
         if (inventoryItem != null){
             inventoryItem.productQuantity += amount
         } else {
-            inventoryRepository.save(Inventory(inventoryId = UUID.randomUUID(), productId = searchedProduct.productId, productQuantity = amount))
+            return inventoryRepository.save(Inventory(inventoryId = UUID.randomUUID(), productId = searchedProduct.productId, productQuantity = amount))
         }
 
         return inventoryItem
