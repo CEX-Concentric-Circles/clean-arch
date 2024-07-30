@@ -7,5 +7,4 @@ import java.util.*
 interface ProductRepository: CrudRepository<Product, UUID> {
     fun findProductByName(name: String): Product?
     fun findProductByProductId(productId: UUID): Product?
-    fun deleteProductByProductId(productId: UUID): Boolean
 }
