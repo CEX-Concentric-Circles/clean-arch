@@ -19,42 +19,42 @@ class OrderService {
     @Autowired
     lateinit var inventoryService: InventoryService
 
-    fun processOrder(order: Order): Order {
-
-        // TODO: once the order is received, the products are removed from the inventory and the stock is updated.
-        //  The modifier orderSuccess is toggled to true if processing the order is successful.
-        //  The order is then saved in the database.
-
-        //create an order entity from the dto
-//        val order = orderMapper.toEntity(orderDTO)
-
-        //get a list of products from the order
-        val listOfProducts = order.listOfProducts
-
-        //check if the products in the order are in the inventory
-        for (product in listOfProducts) {
-            if (!inventoryService.checkIfProductIsInInventory(product.productId ?: throw Exception("Product ID is null"))) {
-                throw Exception("Product with product ID ${product.productId} and product name ${product.name} not found in inventory")
-            }
-        }
-
-        //gonna increment and compare this with the number of products in the order
-        var counter = 0
-
-        //for each product in the list of products, decrease the stock from the inventory
-        for (product in listOfProducts) {
-            if(inventoryService.decreaseProductStockFromInventory(product))
-                counter++
-        }
-
-        if (counter == listOfProducts.size) {
-            orderRepository.save(order)
-            order.orderSuccess = true
-        }
-
-        return order
-
-    }
+//    fun processOrder(order: Order): Order {
+//
+//        // TODO: once the order is received, the products are removed from the inventory and the stock is updated.
+//        //  The modifier orderSuccess is toggled to true if processing the order is successful.
+//        //  The order is then saved in the database.
+//
+//        //create an order entity from the dto
+////        val order = orderMapper.toEntity(orderDTO)
+//
+//        //get a list of products from the order
+//        val listOfProducts = order.listOfProducts
+//
+//        //check if the products in the order are in the inventory
+//        for (product in listOfProducts) {
+//            if (!inventoryService.checkIfProductIsInInventory(product.productId ?: throw Exception("Product ID is null"))) {
+//                throw Exception("Product with product ID ${product.productId} and product name ${product.name} not found in inventory")
+//            }
+//        }
+//
+//        //gonna increment and compare this with the number of products in the order
+//        var counter = 0
+//
+//        //for each product in the list of products, decrease the stock from the inventory
+//        for (product in listOfProducts) {
+//            if(inventoryService.decreaseProductStockFromInventory(product))
+//                counter++
+//        }
+//
+//        if (counter == listOfProducts.size) {
+//            orderRepository.save(order)
+//            order.orderSuccess = true
+//        }
+//
+//        return order
+//
+//    }
 
     fun listAllOrders(): List<Order> {
         return orderRepository.findAll().toList()
