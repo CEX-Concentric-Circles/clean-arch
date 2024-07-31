@@ -12,7 +12,7 @@ class DecreaseProductStockFromInventoryUseCase (
     fun decreaseStock (product: Product): Inventory? {
 
         val existingProduct = productInStock.checkIfProductIsInStock(product.name)
-            ?: throw Exception("Product '${product.name}' does not exist. Please create the product first.")
+            ?: throw Exception("Product '${product.name}' does not exist in the inventory. Please create the product first.")
 
         existingProduct.productQuantity -= 1
 
