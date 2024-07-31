@@ -6,7 +6,7 @@ import java.util.*
 
 @Entity
 @Data
-@Table(name = "`product`")
+@Table(name = "product")
 class Product (
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)

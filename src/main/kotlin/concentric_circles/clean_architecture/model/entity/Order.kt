@@ -6,21 +6,24 @@ import java.util.*
 
 @Entity
 @Data
-@Table(name = "`order`")
+@Table(name = "order_table")
 class Order(
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column
     var orderId: UUID = UUID.randomUUID(),
 
-    @OneToMany
+//    @OneToMany
+//    @Column
+//    val listOfProducts: List<Product> = mutableListOf(),
+
     @Column
-    val listOfProducts: List<Product> = mutableListOf(),
+    var productId: UUID? = null,
 
     @Column
     var orderSuccess: Boolean = false
 ){
     override fun toString(): String {
-        return "Order(id=$orderId, List Of products=$listOfProducts)"
+        return "Order(id=$orderId, productID='$productId', orderSuccess=$orderSuccess)"
     }
 }
