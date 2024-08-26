@@ -1,10 +1,13 @@
 services:
   mysql:
     image: 'mysql:latest'
+    restart: no
+    volumes:
+      - ./mysql:/var/lib/mysql
     environment:
-      - 'MYSQL_DATABASE=mydatabase'
-      - 'MYSQL_PASSWORD=secret'
-      - 'MYSQL_ROOT_PASSWORD=verysecret'
-      - 'MYSQL_USER=myuser'
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_USER: cleanArch
+      MYSQL_PASSWORD: password
+      MYSQL_DATABASE: cleanArch
     ports:
-      - '3306'
+      - "3306:3306"
