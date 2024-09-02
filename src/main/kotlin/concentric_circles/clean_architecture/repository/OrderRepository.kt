@@ -7,4 +7,5 @@ import java.util.*
 
 interface OrderRepository: CrudRepository<Order, UUID> {
     fun findOrdersByProductId(productId: UUID): Order?
+    fun findOrdersByCustomerId(customerId: UUID): Order?
 }

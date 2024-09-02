@@ -10,9 +10,9 @@ class CreateOrderUseCase (
     val orderRepository: OrderRepository
 ){
 
-    fun createOrder(productId: UUID): Order {
+    fun createOrder(order: Order): Order {
 
-        return orderRepository.save(Order(orderId = UUID.randomUUID(), productId = productId))
+        return orderRepository.save(Order(orderId = UUID.randomUUID(), productId = order.productId, customerId = order.customerId))
 
     }
 

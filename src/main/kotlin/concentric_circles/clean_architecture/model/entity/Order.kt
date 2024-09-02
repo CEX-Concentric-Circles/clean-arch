@@ -18,12 +18,15 @@ class Order(
 //    val listOfProducts: List<Product> = mutableListOf(),
 
     @Column
-    var productId: UUID? = null,
+    var productId: UUID,
 
     @Column
-    var orderSuccess: Boolean = false
+    var orderSuccess: Boolean = false,
+
+    @Column
+    var customerId: UUID
 ){
     override fun toString(): String {
-        return "Order(id=$orderId, productID='$productId', orderSuccess=$orderSuccess)"
+        return "Order(id=$orderId, customerID='$customerId', productID='$productId', orderSuccess=$orderSuccess)"
     }
 }
