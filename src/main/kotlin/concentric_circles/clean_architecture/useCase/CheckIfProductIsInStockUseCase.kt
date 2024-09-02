@@ -3,19 +3,20 @@ package concentric_circles.clean_architecture.useCase
 import concentric_circles.clean_architecture.model.entity.Inventory
 import concentric_circles.clean_architecture.repository.InventoryRepository
 import org.springframework.stereotype.Service
+import java.util.*
 
 @Service
 class CheckIfProductIsInStockUseCase (
-    var inventoryRepository: InventoryRepository,
-    var productExistsUseCase: CheckIfProductExistsUseCase
+    var inventoryRepository: InventoryRepository
 ) {
 
-    fun checkIfProductIsInStock(productName: String): Inventory? {
+    fun checkIfProductIsInStock(productId: UUID): Inventory? {
 
-        val existingProduct = productExistsUseCase.checkIfProductExists(productName)
-            ?: throw Exception("Product '${productName}' does not exist. Please create the product first.")
+        val productInInventory = inventoryRepository.searchByProductId(productId) ?: return null
 
-        val productInInventory = inventoryRepository.searchByProductId(existingProduct.productId)
+        if (productInInventory.productQuantity <= 0) {
+            return null
+        }
 
         return productInInventory
     }

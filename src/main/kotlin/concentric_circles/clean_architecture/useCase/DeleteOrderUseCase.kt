@@ -12,7 +12,7 @@ class DeleteOrderUseCase (
     fun deleteOrder(orderId: UUID) {
 
         val existingOrder = orderRepository.findById(orderId)
-        ?: throw Exception("Order with ID:'$orderId' does not exist.")
+//        ?: throw Exception("Order with ID:'$orderId' does not exist.")
 
         orderRepository.delete(existingOrder.get())
     }

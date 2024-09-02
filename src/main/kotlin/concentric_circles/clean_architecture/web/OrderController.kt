@@ -6,6 +6,7 @@ import concentric_circles.clean_architecture.useCase.DeleteOrderUseCase
 import concentric_circles.clean_architecture.useCase.GetAllOrdersUseCase
 import concentric_circles.clean_architecture.useCase.ProcessOrderUseCase
 import org.springframework.http.ResponseEntity
+import org.springframework.jdbc.support.KeyHolder
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -21,8 +22,8 @@ class OrderController (
 ) {
 
     @PostMapping("/createorder")
-    fun createOrder(@RequestBody productId: UUID): ResponseEntity<out Any> {
-        return ResponseEntity.ok().body(createOrderUseCase.createOrder(productId))
+    fun createOrder(@RequestBody order: Order): ResponseEntity<out Any> {
+        return ResponseEntity.ok().body(createOrderUseCase.createOrder(order))
     }
 
     @PostMapping("/processorder")

@@ -2,7 +2,7 @@ package concentric_circles.clean_architecture.web
 
 import concentric_circles.clean_architecture.model.entity.Inventory
 import concentric_circles.clean_architecture.model.entity.Product
-import concentric_circles.clean_architecture.service.InventoryService
+//import concentric_circles.clean_architecture.service.InventoryService
 import concentric_circles.clean_architecture.useCase.AddProductToInventoryUseCase
 import concentric_circles.clean_architecture.useCase.GetAllTheInventoryItemsUseCase
 import io.swagger.v3.oas.annotations.Operation
@@ -15,7 +15,6 @@ import java.util.UUID
 
 @RestController
 class InventoryController (
-//    val inventoryService: InventoryService,
     val getAllTheInventoryItemsUseCase: GetAllTheInventoryItemsUseCase,
     val addProductToInventoryUseCase: AddProductToInventoryUseCase
 ) {
@@ -27,8 +26,8 @@ class InventoryController (
 
     @Operation(summary = "Add a product to the inventory.")
     @PostMapping("/addtoinventory")
-    fun addProductToInventory(@RequestBody productId: UUID, amount: Int = 1): ResponseEntity<out Any> {
-        val newProduct = addProductToInventoryUseCase.addProductToInventory(productId, amount)
+    fun addProductToInventory(@RequestBody productId: UUID): ResponseEntity<out Any> {
+        val newProduct = addProductToInventoryUseCase.addProductToInventory(productId)
         return ResponseEntity.ok(newProduct)
     }
 

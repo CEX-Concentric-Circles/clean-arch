@@ -1,7 +1,7 @@
 package concentric_circles.clean_architecture.web
 
 import concentric_circles.clean_architecture.model.entity.Product
-import concentric_circles.clean_architecture.service.ProductService
+//import concentric_circles.clean_architecture.service.ProductService
 import concentric_circles.clean_architecture.useCase.*
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -12,13 +12,11 @@ import java.util.UUID
 
 @RestController
 class ProductController (
-//    val productService: ProductService,
     val getProductUseCase: GetProductUseCase,
     val listAllProductsUseCase: ListAllProductsUseCase,
     val createProductUseCase: CreateProductUseCase,
     val updateProductUseCase: UpdateProductUseCase,
     val deleteProductUseCase: DeleteProductUseCase,
-    val checkIfProductExistsUseCase: CheckIfProductExistsUseCase,
     val addProductToInventoryUseCase: AddProductToInventoryUseCase
 
 ) {
@@ -48,10 +46,5 @@ class ProductController (
     fun deleteProduct(@RequestBody product: Product): ResponseEntity<out Any> {
         return ResponseEntity.ok().body(deleteProductUseCase.deleteProduct(product))
     }
-
-//    @PostMapping("/productexists")
-//    fun checkIfProductExists(@RequestBody productName: String): ResponseEntity<out Any> {
-//        return ResponseEntity.ok().body(checkIfProductExistsUseCase.checkIfProductExists(productName))
-//    }
 
 }

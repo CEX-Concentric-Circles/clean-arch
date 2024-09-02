@@ -6,9 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
 @Service
-class CreateProductUseCase (
-    var addProductToInventoryUseCase: AddProductToInventoryUseCase
-) {
+class CreateProductUseCase () {
 
     @Autowired
     lateinit var productRepository: ProductRepository
@@ -17,8 +15,7 @@ class CreateProductUseCase (
         val existingProduct = productRepository.findProductByName(product.name)
 
         if (existingProduct != null) {
-            addProductToInventoryUseCase.addProductToInventory(existingProduct.productId)
-            println("Product '${product.name}' already exists. Added this to the inventory.")
+            println("Product '${product.name}' already exists")
             return existingProduct
         }
 

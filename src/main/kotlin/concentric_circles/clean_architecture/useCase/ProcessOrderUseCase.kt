@@ -22,12 +22,15 @@ class ProcessOrderUseCase (
 
         val order = searchedOrder.get()
 
-        val productInTheOrder = order.productId?.let { getProductUseCase.getProductById(it) }
+        val productInTheOrder = order.productId.let { getProductUseCase.getProductById(it) }
         ?: throw Exception("Product with the ID:'${order.productId}' does not exist.")
 
         val newInventory = decreaseProductStockFromInventoryUseCase.decreaseStock(productInTheOrder)
 
-        order.orderSuccess = true
+        if (newInventory != null)
+            order.orderSuccess = true
+        else
+            order.orderSuccess = false
 
         return orderRepository.save(order)
     }
